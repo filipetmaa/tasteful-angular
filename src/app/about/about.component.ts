@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { Increment, Decrement } from '@state/counter/counter.actions';
+import { Increment, Decrement, Load } from '@state/counter/counter.actions';
 import { State } from '@state/counter/counter.state';
 
 @Component({
@@ -13,17 +13,21 @@ import { State } from '@state/counter/counter.state';
 export class AboutComponent implements OnInit {
 
   count$: Observable<number>;
-  
+
   constructor(private store: Store<State>) {
     this.count$ = store.pipe(select('count'));
   }
-  
-  increment(){
+
+  increment() {
     this.store.dispatch(new Increment());
   }
-  
-  decrement(){
+
+  decrement() {
     this.store.dispatch(new Decrement());
+  }
+
+  load() {
+    this.store.dispatch(new Load());
   }
 
   ngOnInit() {
