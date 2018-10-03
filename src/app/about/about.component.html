@@ -1,3 +1,8 @@
 <p>
   about works!
 </p>
+
+<button (click)="decrement()">Decrement</button>
+<button (click)="increment()">Increment</button>
+
+<div>Current Count: {{ ( count$ | async ).counter }}</div>
