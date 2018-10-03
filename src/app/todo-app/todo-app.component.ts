@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Store, select } from '@ngrx/store';                            // add
-import { Observable } from 'rxjs';                                      // add
-
-import { Increment, Decrement } from '@state/counter/counter.actions';  // add
-import { State } from '@state/counter/counter.state';
+interface TodoItem {
+  name: String;
+  done: Boolean;
+}
 
 @Component({
   selector: 'app-todo-app',
@@ -12,21 +11,28 @@ import { State } from '@state/counter/counter.state';
 })
 export class TodoAppComponent implements OnInit {
 
-  count$: Observable<number>;
-  
-  constructor(private store: Store<State>) {
-    this.count$ = store.pipe(select('count'));
-  }
-  
-  increment(){
-    this.store.dispatch(new Increment());
-  }
-  
-  decrement(){
-    this.store.dispatch(new Decrement());
-  }
+  newTodo: String = '';
+
+  list: Array<TodoItem> = [
+    { name: 'clean room', done: false },
+    { name: 'make pancakes', done: false },
+    { name: 'spend 3 hours on reddit', done: true }
+  ];
+
+  constructor() { }
 
   ngOnInit() {
+  }
+
+  addTodo() {
+    console.log('this.newTodo', this.newTodo);
+
+    this.list.push({
+      name: this.newTodo,
+      done: false
+    });
+
+    this.newTodo = '';
   }
 
 }

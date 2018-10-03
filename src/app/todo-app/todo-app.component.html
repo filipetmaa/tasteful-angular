@@ -2,7 +2,20 @@
   todo-app works!
 </p>
 
-<button (click)="decrement()">Decrement</button>
-<button (click)="increment()">Increment</button>
+<form>
+  <input [(ngModel)]="newTodo" name="newTodo"/>
+  <button (click)="addTodo()" type="submit">Add Todo</button>
+</form>
 
-<div>Current Count: {{ ( count$ | async ).counter }}</div>
+<ul>
+  <li *ngFor="let task of list">
+      <input type="checkbox" [(ngModel)]="task.done"/>
+      {{task.name}}
+  </li>
+</ul>
+
+<hr>
+
+<h3>Debug Stuff</h3>
+
+<pre>{{list | json}}</pre>
