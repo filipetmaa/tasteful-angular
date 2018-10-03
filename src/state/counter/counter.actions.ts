@@ -1,7 +1,5 @@
 import { Action } from '@ngrx/store';
 
-import { State } from './counter.state';
-
 export enum CounterActionTypes {
     INCREMENT = '[COUNTER] Increment',
     DECREMENT = '[COUNTER] Decrement',
@@ -21,8 +19,14 @@ export class Decrement implements Action {
 export class Load implements Action {
     readonly type = CounterActionTypes.LOAD;
 }
+
 export class LoadSucceeded implements Action {
     readonly type = CounterActionTypes.LOAD_SUCCEEDED;
+    constructor(public payload: { counter: number }) { }
+}
+
+export class LoadFailed implements Action {
+    readonly type = CounterActionTypes.LOAD_FAILED;
     constructor(public payload: { counter: number }) { }
 }
 
@@ -30,4 +34,5 @@ export type CounterActions
     = Increment
     | Decrement
     | Load
-    | LoadSucceeded;
+    | LoadSucceeded
+    | LoadFailed;
