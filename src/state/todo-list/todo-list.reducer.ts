@@ -13,6 +13,7 @@ export function todoListReducer(state = initialState, action: TodoListActions): 
 
         case TodoListActionTypes.TOGGLE_TODO:
             return [...state]
+            //
                 .map((obj, i) => {
                     if (action.payload.index === i) {
                         return {
@@ -22,6 +23,13 @@ export function todoListReducer(state = initialState, action: TodoListActions): 
                     }
                     return obj;
                 });
+                // vvv PREFERIVEL vvv
+                // .map((obj, i) => ({
+                //     ...obj,
+                //     ...(action.payload.index === i) && {
+                //         done: action.payload.done || !obj.done
+                //     }
+                // }));
 
         default: {
             return state;
